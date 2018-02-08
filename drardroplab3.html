@@ -1,0 +1,71 @@
+<DOCTYPE html>
+<html>
+	<head>
+		<script>
+				
+				function setupEvents (){
+					// Set up the eventhandler for if mouse pressed over pic
+					var logo = document.getElementById("logopic");
+					logo.addEventListener ("mousedown", mouseDown, false);
+				}
+				
+				function mouseDown(){
+					// If mouse button is down relative to pic then drag
+					var logo = document.getElementById("logopic");
+					logo.addEventListener ("mousemove", mouseDrag, false);
+					logo.removeEventListener ("mousedown", mouseDown, false);
+					
+				}
+				
+				function mouseDrag (e){
+					e.stopPropagation();
+					e.preventDefault();
+					var logo = document.getElementById("logopic");							
+				}
+				
+				
+				function dropImage (boxNo) {
+				 // So if the mouse is up and the image inside the 
+				 // boxes then drop into the boxes
+				 // Need to have the co-ordinates of the box
+				 // Need to have co oridinates of the image
+				 var boxs = document.getElementById("boxTwo");
+				 var logo = document.getElementById("logopic");
+	
+				 if (boxNo==1) {
+				 var boxs = document.getElementById("boxOne"); }
+
+				boxs.appendChild(logo);
+				boxs.style.background="red";
+				logo.style.margin="auto";
+				}
+				
+				
+		
+		
+		</script>
+	
+		<style>
+			div {
+				border-style : solid;
+				width : 400px;
+				height : 400px;
+				display : inline-block;
+				margin : 40px;
+			}
+
+			
+
+		</style>
+	
+	</head>
+	<body onload="setupEvents()">
+
+			<img id="logopic" src="uccllogo.png" />
+		
+			<div id="boxOne" ondragleave="dropImage(1)"> </div>
+			<div id="boxTwo" ondragleave="dropImage(2)"> </div>
+		
+
+	</body>
+</html>
